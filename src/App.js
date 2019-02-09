@@ -72,17 +72,3 @@ class App extends Component {
 }
 
 export default App;
-
-/*
-<SingleDataList
-                  componentId="comicFilters"
-                  dataField="comic.keyword"
-                  data={[
-                    {label: "Cyanide and Happiness", value: "Cyanide and Happiness"},
-                    {label: "Questionable Content", value: "Questionable Content"},
-                    {label: "smbc", value: "smbc"},
-                    {label: "xkcd", value: "xkcd"}
-                  ]}
-                  showSearch={false}
-                />
-*/
