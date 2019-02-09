@@ -3,41 +3,65 @@ html {
   height: 100%;
 }
 
-/*.search-wrapper {
-  position: fixed;
+img {
+  max-width: 95%;
+  max-height: 75%;
+}
+
+.search-wrapper {
   width: 100%;
-  text-align: center;
-}*/
-
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.search-box {
+  width: 75%;
+  background: #EFEFEF;
+  position: fixed;
+  box-shadow: 0 2px 5px 0 #00000045;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.results-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 5%;
+}
+
+.results-list {
+ width: 50%;
+ margin-left: 10%;
+}
+
+.result {
+  border-width: 1px;
+  border-color: white;
+  background: #EFEFEF;
+  margin-bottom: 2em;
+  padding: 0.5em;
+  box-shadow: 0 2px 5px 0 #00000045;
+}
+
+.result:hover {
+  background: #DEDEDE;
+}
+
+.result-content {
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-bottom: 1em;
+}
+
+.sidebar-container {
+  margin-right: 25%;
+}
+
+.sidebar-content {
+  position: fixed;
+  width: 15%;
+}
+
+.dropdown {
+  background-color: #EFEFEF;
+  box-shadow: 0 2px 5px 0 #00000045;
 }
