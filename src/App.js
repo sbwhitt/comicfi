@@ -8,7 +8,22 @@ import {
 } from '@appbaseio/reactivesearch';
 import './App.css';
 
+const Logo = (props) => {
+  return (
+    <div style={props.visible ? {display: "none"} : {display: "block", width: "100%", textAlign: "center", color: props.color}}>
+      <h1 className="title">comicfi</h1>
+    </div>
+  );
+}
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isTyping: false
+    }
+  }
+
   _renderResults(res) {
     return(
       <div className="result">
@@ -23,29 +38,63 @@ class App extends Component {
     );
   };
 
+  _renderNoResults(res) {
+    return (
+      <div className="result">
+          <div className="result-content">
+            <p>No results found</p>
+          </div>
+        </div>
+    );
+  } 
+
+  _onChange(e) {
+    e.target.parentNode.parentNode.parentNode.classList.add("top");
+    this.setState({isTyping: true});
+    //else this.setState({isTyping: true});
+    //e.target.parentNode.classList.add("top");
+  }
+
+  _resetSearch(e) {
+    if (e.target.value === "") {
+      this.setState({isTyping: false});
+      e.target.parentNode.parentNode.parentNode.classList.remove("top");
+    }
+  }
+
+  /*
+  <div className="top-bar" style={this.state.isTyping ? {display: "block"} : {display: "none"}}>
+          <Logo color="#000000"/>
+        </div>
+  */
+
   render() {
     return (
       <div>
-        <h1 style={{textAlign: "center", marginTop: "1em", color: "white"}}>comicfi</h1>
+        <Logo color="#FFFFFF" visible={this.state.isTyping}/>
         <ReactiveBase app="xkcd,smbc,cah,qc" url="http://35.207.29.23:9200/">
           <div className="search-wrapper">
-              <DataSearch className="search-box"
-                componentId="searchbox"
-                dataField={["comic", "transcript", "title"]}
-                placeholder="Search for comics"
-                autosuggest={false}
-                fuzziness={1}
-              />
+            <DataSearch className="search-box"
+              componentId="searchbox"
+              dataField={["comic", "transcript", "title"]}
+              placeholder="Search for comics"
+              autosuggest={false}
+              fuzziness={1}
+              onKeyPress={(e) => {this._onChange(e)}}
+              onKeyDown={(e) => {this._resetSearch(e)}}
+              autoFocus={true}
+            />
           </div>
-          <div className="results-wrapper">
+          <div className="results-wrapper" style={this.state.isTyping ? {diplay: "block"} : {display: "none"}}>
             <div className="results-list">
               <ReactiveList
-                componentId="list"
+                componentId="results"
                 dataField="transcript.keyword"
                 react={{and: ["searchbox", "comicFilters"]}}
                 stream={true}
                 renderData={this._renderResults}
                 showResultStats={false}
+                renderNoResults={this._renderNoResults}
               />
             </div>
             <div className="sidebar-container">
@@ -60,6 +109,7 @@ class App extends Component {
                     {label: "smbc", value: "smbc"},
                     {label: "xkcd", value: "xkcd"}
                   ]}
+                  react={{and: ["searchbox"]}}
                   showSearch={false}
                 />
               </div>
