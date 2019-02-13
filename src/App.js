@@ -7,6 +7,7 @@ import {
   SingleDropdownList 
 } from '@appbaseio/reactivesearch';
 import './App.css';
+import { Config } from './config.js';
 
 const Logo = (props) => {
   return (
@@ -72,7 +73,7 @@ class App extends Component {
     return (
       <div>
         <Logo color="#FFFFFF" visible={this.state.isTyping}/>
-        <ReactiveBase app="xkcd,smbc,cah,qc" url="http://35.207.29.23:9200/">
+        <ReactiveBase app={Config.es.indexes} url={Config.es.url}>
           <div className="search-wrapper">
             <DataSearch className="search-box"
               componentId="searchbox"
