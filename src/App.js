@@ -3,7 +3,6 @@ import {
   ReactiveBase,
   DataSearch,
   ReactiveList,
-  SingleDataList,
   SingleDropdownList 
 } from '@appbaseio/reactivesearch';
 import './App.css';
@@ -11,22 +10,11 @@ import { Config } from './config.js';
 
 const LogoMain = (props) => {
   return (
-    <div style={{width: "100%", textAlign: "center", color: "white"}}>
+    <div className="title-wrapper" style={props.visible ? {display: "block"} : {display: "none"}}>
       <h1 className="title">comicfi</h1>
     </div>
   );
 }
-
-/*
-(props.visible ? (
-    <div style={{width: "100%", color: "black"}}>
-      <h1 className="title">comicfi</h1>
-    </div>) :
-    (<div style={{width: "100%", textAlign: "center", color: "white"}}>
-      <h1 className="title">comicfi</h1>
-    </div>)
-  );
-*/
 
 class App extends Component {
   constructor(props) {
@@ -63,6 +51,7 @@ class App extends Component {
   _onChange(e) {
     e.target.parentNode.parentNode.parentNode.classList.add("top");
     e.target.parentNode.parentNode.classList.add("top");
+    e.target.classList.add("top");
     this.setState({isTyping: true});
     //else this.setState({isTyping: true});
     //e.target.parentNode.classList.add("top");
@@ -73,21 +62,16 @@ class App extends Component {
       this.setState({isTyping: false});
       e.target.parentNode.parentNode.parentNode.classList.remove("top");
       e.target.parentNode.parentNode.classList.remove("top");
+      e.target.classList.remove("top");
     }
   }
-
-  /*
-  <div className="top-bar" style={this.state.isTyping ? {display: "block"} : {display: "none"}}>
-          <Logo color="#000000"/>
-        </div>
-  */
 
   render() {
     return (
       <div>
         <div className="top-bar" style={this.state.isTyping ? {display: "block"} : {display: "none"}}>
         </div>
-        <LogoMain visible={this.state.isTyping}/>
+        <LogoMain visible={!this.state.isTyping}/>
         <ReactiveBase app={Config.es.indexes} url={Config.es.es_url}>
           <div className="search-wrapper">
             <DataSearch className="search-box"
@@ -107,7 +91,7 @@ class App extends Component {
                 componentId="results"
                 dataField="transcript.keyword"
                 react={{and: ["searchbox", "comicFilters"]}}
-                stream={true}
+                stream={false}
                 renderData={this._renderResults}
                 showResultStats={false}
                 renderNoResults={this._renderNoResults}

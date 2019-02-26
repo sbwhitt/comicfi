@@ -8,6 +8,12 @@ img {
   max-height: 75%;
 }
 
+.title-wrapper {
+  width: 100%;
+  text-align: center;
+  color: white;
+}
+
 .title {
   font-size: 3em;
   text-align: "center";
@@ -19,7 +25,7 @@ img {
 
 .top-bar {
   width: 100%;
-  height: 5em;
+  height: 3.6em;
   background-color: #EFEFEF;
   box-shadow: 0 2px 5px 0 #00000045;
   position: fixed;
@@ -37,14 +43,14 @@ img {
 }
 
 .search-wrapper.top {
-  top: 0.85em;
+  top: 0.5em;
   box-shadow: 0 0 0 0 #00000000;
 }
 
 .search-box {
   width: 75%;
   border-radius: 4px;
-  position: fixed;
+  /*position: fixed;*/
   box-shadow: 0 2px 5px 0 #00000045;
 }
 
@@ -61,6 +67,10 @@ input.css-kxuoep {
   padding-left: 38px;
 }
 
+input.css-kxuoep.top {
+  height: 42px;
+}
+
 svg.search-icon {
   height: 18px;
   width: 18px;
@@ -71,12 +81,13 @@ svg.search-icon {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin-top: 1.5em;
+  margin-top: 5em;
 }
 
 .results-list {
  width: 50%;
- margin-left: 10%;
+ margin-left: 15%;
+ margin-right: 5%;
 }
 
 .result {
@@ -93,13 +104,14 @@ svg.search-icon {
 }
 
 .result-content {
-  margin-left: 1em;
+  /*margin-left: 1em;
   margin-right: 1em;
-  margin-bottom: 1em;
+  margin-bottom: 1em;*/
+  margin: 1em;
 }
 
 .sidebar-container {
-  margin-right: 25%;
+  margin-right: 30%;
 }
 
 .sidebar-content {
